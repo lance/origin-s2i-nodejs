@@ -57,7 +57,13 @@ function tagImage (id, repo, tag) {
 }
 
 function processImageData (data) {
+  const largestVersionNumbersLts = new Set();
   _.each(baseImages, (image) => {
+    _.each(versions, (version) => {
+      if (releases[version].lts) {
+        largestVersionNumbersLts.add(version);
+      }
+    });
     _.each(versions, (version) => {
       const fullVersionNumber = semver.clean(releases[version].version);
       const tag = `${image}:${fullVersionNumber}`;
@@ -66,11 +72,12 @@ function processImageData (data) {
       if (imageData) {
         tagImage(imageData.Id.split(':')[1], image, version);
         if (releases[version].lts) {
-          tagImage(imageData.Id.split(':')[1], image, 'lts');
+          if (version === Array.from(largestVersionNumbersLts).pop()) {
+            tagImage(imageData.Id.split(':')[1], image, 'lts');
+          }
           tagImage(imageData.Id.split(':')[1], image, releases[version].lts);
         }
         if (version === current) {
-          tagImage(imageData.Id.split(':')[1], image, 'current');
           tagImage(imageData.Id.split(':')[1], image, 'latest');
         }
       } else {
