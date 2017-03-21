@@ -2,8 +2,8 @@ dist: trusty
 before_script:
   # - sudo apt install python-pip
   - pip install docker-squash
-  - wget https://github.com/openshift/source-to-image/releases/download/v1.1.4/source-to-image-1.1.4-870b273-linux-amd64.tar.gz
-  - tar xvzOf source-to-image-1.1.4-870b273-linux-amd64.tar.gz > s2i.bin
+  - wget https://github.com/openshift/source-to-image/releases/download/v1.1.5/source-to-image-v1.1.5-4dd7721-linux-amd64.tar.gz
+  - tar xvzOf source-to-image-v1.1.5-4dd7721-linux-amd64.tar.gz > s2i.bin
   - sudo mv s2i.bin /usr/bin/s2i
   - sudo chmod 755 /usr/bin/s2i
 script:
