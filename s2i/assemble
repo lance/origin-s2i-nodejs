@@ -53,7 +53,7 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
 fi
 
 echo "---> Building your Node application from source"
-npm install -d
+npm install -s
 
 # Fix source directory permissions
 fix-permissions ./
