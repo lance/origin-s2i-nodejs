@@ -9,7 +9,8 @@ fi
 
 # Runs the nodejs application server.
 run_node() {
-  exec npm run -d $NPM_RUN
+  cd $HOME
+  exec npm run $NPM_RUN
 }
 
 RUNNODE=true

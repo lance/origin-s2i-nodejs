@@ -19,6 +19,7 @@ set -e
 #npm link $module_list
 
 echo "---> Installing application source"
+cd $HOME && pwd
 cp -Rf /tmp/src/. ./
 
 if [ ! -z $HTTP_PROXY ]; then
@@ -56,4 +57,4 @@ echo "---> Building your Node application from source"
 npm install -s
 
 # Fix source directory permissions
-fix-permissions ./
+# fix-permissions ./

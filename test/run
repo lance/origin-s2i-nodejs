@@ -6,7 +6,7 @@
 # IMAGE_NAME specifies a name of the candidate image used for testing.
 # The image has to be available before this script is executed.
 #
-IMAGE_NAME=${IMAGE_NAME-bucharestgold/centos7-s2i-nodejs-candidate}
+IMAGE_NAME=${IMAGE_NAME-bucharestgold/rhel7-atomic-s2i-nodejs-candidate}
 NODE_VERSION=${NODE_VERSION}
 IMAGE_TAG=${IMAGE_NAME}":"${NODE_VERSION};
 
@@ -61,9 +61,9 @@ cleanup() {
       docker stop $(cat $cid_file)
     fi
   fi
-  if image_exists ${IMAGE_NAME}-testapp; then
-    docker rmi -f ${IMAGE_NAME}-testapp
-  fi
+  # if image_exists ${IMAGE_NAME}-testapp; then
+  #   # docker rmi -f ${IMAGE_NAME}-testapp
+  # fi
   cids=`ls -1 *.cid 2>/dev/null | wc -l`
   if [ $cids != 0 ]
   then
